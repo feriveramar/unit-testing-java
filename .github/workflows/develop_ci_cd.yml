@@ -16,12 +16,10 @@ jobs:
           java-version: '11' # O la versión que necesites
           distribution: 'adopt'
 
-      - name: List directory
-        run: ls -R # Esto listará todos los archivos y carpetas
-
-      - name: Build with Maven
-        run: mvn install
+      - name: Compile Java code
+        run: |
+          javac -cp .:junit-4.13.2.jar -d out src/**/*.java src/test/**/*.java
 
       - name: Run tests
-        run: mvn test
-
+        run: |
+          java -cp .:junit-4.13.2.jar:out org.junit.runner.JUnitCore your.package.name.YourTestClass
