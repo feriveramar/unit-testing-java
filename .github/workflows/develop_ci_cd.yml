@@ -16,6 +16,9 @@ jobs:
           java-version: '11' # O la versión que necesites
           distribution: 'adopt'
 
+      - name: Print working directory
+        run: pwd # Imprime el directorio de trabajo actual
+
       - name: List project files
         run: ls -R # Listar archivos y directorios para verificar la estructura
 
