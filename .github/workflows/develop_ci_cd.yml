@@ -16,6 +16,9 @@ jobs:
           java-version: '11' # O la versión que necesites
           distribution: 'adopt'
 
+      - name: List project files
+        run: ls -R # Listar archivos y directorios para verificar la estructura
+
       - name: Compile Java code
         run: |
           find src -name "*.java" > sources.txt
