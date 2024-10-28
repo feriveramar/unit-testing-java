@@ -11,7 +11,7 @@ public class AntonAndDanikTest {
     }
 
     @Test
-    public void testDanikWins() { 
+    public void testDanikWins() {  
         // Ejemplo 2: Danik gana
         String result = AntonAndDanik.determineWinner(7, "DDDAADA");
         assertEquals("Danik", result);
