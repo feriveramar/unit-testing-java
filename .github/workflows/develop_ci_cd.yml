@@ -1,4 +1,4 @@
-name: develop CI_CD
++name: develop CI_CD
 on: 
   push:
     branches: [ "develop"]
@@ -18,7 +18,8 @@ jobs:
 
       - name: Compile Java code
         run: |
-          javac -cp .:junit-4.13.2.jar -d out src/**/*.java src/test/**/*.java
+          find src -name "*.java" > sources.txt
+          javac -cp .:junit-4.13.2.jar -d out @sources.txt
 
       - name: Run tests
         run: |
