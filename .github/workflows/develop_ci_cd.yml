@@ -9,13 +9,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v1
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
         with:
-          node-version: 20.x
-      - name: Setup
-        run: npm ci
+          java-version: '11' # O la versión que necesites
+          distribution: 'adopt'
 
-      - name: Test
+      - name: Print working directory
+        run: pwd # Imprime el directorio de trabajo actual
+
+      - name: List project files
+        run: ls -R # Listar archivos y directorios para verificar la estructura
+
+      - name: Compile Java code
         run: |
-          npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+          find src -name "*.java" > sources.txt
+          javac -cp .:junit-4.13.2.jar -d out @sources.txt
+
+      - name: Run tests
+        run: |
+          java -cp .:junit-4.13.2.jar:out org.junit.runner.JUnitCore your.package.name.YourTestClass
